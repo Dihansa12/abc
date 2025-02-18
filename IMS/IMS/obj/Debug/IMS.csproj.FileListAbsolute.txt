@@ -1,0 +1,14 @@
+c:\users\ushi\documents\visual studio 2012\Projects\IMS\IMS\bin\Debug\IMS.exe.config
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\bin\Debug\IMS.exe
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\bin\Debug\IMS.pdb
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.csprojResolveAssemblyReference.cache
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.Form1.resources
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.Properties.Resources.resources
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.csproj.GenerateResource.Cache
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.exe
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.pdb
+C:\Users\Ushi\Documents\Visual Studio 2012\Projects\IMS\IMS\obj\Debug\IMS.ManageUsers.resources
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.ManageCategories.resources
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.ManageCustomers.resources
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.ProductManage.resources
+C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.ViewOrders.resources
