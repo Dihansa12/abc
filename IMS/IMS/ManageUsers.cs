@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data.SqlClient; 
 
 namespace IMS
 {
@@ -16,105 +17,148 @@ namespace IMS
         {
             InitializeComponent();
         }
-        static string connectionstring = "";
-        SqlConnection con=new SqlConnection(connectionstring);
 
-    
-        }
+        static string connectionstring = ""; 
+        SqlConnection con = new SqlConnection(connectionstring);
 
         private void label6_Click(object sender, EventArgs e)
         {
             Application.Exit();
-
         }
 
-     void populate()
-     {
-     try
-     {
-         Con.Open();
-         string MyQuery= "select* from UserTbl";
-         SqlDataAdapter da=new SqlDataAdapter (MyQuery,Con);
-         SqlCommanBuilder builder=new SqlCommandBuilder (da);
-         var ds=new DataSet();
-         da.Fill (ds);
-         UserGD.DataSource=ds.Tables[0];
-         Con.Close();
-
-
-        
-     }
-        catch
-     {
+        void populate()
+        {
+            try
+            {
+                con.Open();
+                string MyQuery = "SELECT * FROM UserTbl";
+                SqlDataAdapter da = new SqlDataAdapter(MyQuery, con);
+                SqlCommandBuilder builder = new SqlCommandBuilder(da);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                UserGD.DataSource = ds.Tables[0];
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlCommand cmd = new SqlCommand("Insert into UserTbl_values('"+unameTb.Text+"','"+fnameTb.Text+"','"+PasswordTb.Text+"','"+PhoneTb.Text+"')");
-            
+            if (string.IsNullOrWhiteSpace(unameTb.Text) || string.IsNullOrWhiteSpace(fnameTb.Text) ||
+                string.IsNullOrWhiteSpace(PasswordTb.Text) || string.IsNullOrWhiteSpace(PhoneTb.Text))
+            {
+                MessageBox.Show("Please fill all fields.");
+                return;
+            }
+
+            string query = "INSERT INTO UserTbl (Uname, Ufullname, Upassword, Uphone) VALUES (@uname, @fname, @pass, @phone)";
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@uname", unameTb.Text);
+            cmd.Parameters.AddWithValue("@fname", fnameTb.Text);
+            cmd.Parameters.AddWithValue("@pass", PasswordTb.Text);
+            cmd.Parameters.AddWithValue("@phone", PhoneTb.Text);
+
             try
-            { Con.Open();
+            {
+                con.Open();
                 cmd.ExecuteNonQuery();
                 MessageBox.Show("User successfully added");
-                Con.Close();
-                 populate();
+                populate();
             }
-            catch
-            { 
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
             }
         }
 
         private void ManageUsers_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'inventorydbDataSet1.UserTbl' table. You can move, or remove it, as needed.
             this.userTblTableAdapter.Fill(this.inventorydbDataSet1.UserTbl);
-
         }
 
         private void UserGD_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-           unameTb.Text=UserGD.SelectedRows[0].Cells[0].Value.ToString();
-            fnameTb.Text=UserGD.SelectedRows[0].Cells[1].Value.ToString();
-            PasswordTb.Text=UserGD.SelectedRows[0].Cells[2].Value.ToString();
-            PhoneTb.Text=UserGD.SelectedRows[0].Cells[3].Value.ToString();
-
-
+            if (UserGD.SelectedRows.Count > 0)
+            {
+                unameTb.Text = UserGD.SelectedRows[0].Cells[0].Value?.ToString();
+                fnameTb.Text = UserGD.SelectedRows[0].Cells[1].Value?.ToString();
+                PasswordTb.Text = UserGD.SelectedRows[0].Cells[2].Value?.ToString();
+                PhoneTb.Text = UserGD.SelectedRows[0].Cells[3].Value?.ToString();
+            }
         }
 
         private void button3_Click(object sender, EventArgs e)
         {
-            if(PhoneTb.Text == "")
+            if (string.IsNullOrWhiteSpace(PhoneTb.Text))
             {
-                MessageBox.Show("Enter The Users Phone Number");
-
+                MessageBox.Show("Enter the user's phone number.");
+                return;
             }
-            else
+
+            string myQuery = "DELETE FROM UserTbl WHERE UPhone = @phone";
+            SqlCommand cmd = new SqlCommand(myQuery, con);
+            cmd.Parameters.AddWithValue("@phone", PhoneTb.Text);
+
+            try
             {
-
+                con.Open();
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("User successfully deleted");
+                populate();
             }
-            Con.Open();
-            string myQeury ="delete from UserTbl where UPhone='"+PhoneTb.Text+"'";
-            SqlCommand cmd=new SqlCommand (myQeury, Con);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("User Successfully Deleted");
-            Con.Close();
-            populate();
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-           
-            SqlCommand cmd = new SqlCommand("update UserTbl set Uname'" +unameTb.Text+"',Ufullname='"+fnameTb.Text+"',Upassword='"+PasswordTb.Text+"'where Uphone'"+PhoneTb.Text,Con);
-            
-            try
-            { Con.Open();
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("User successfully Updated");
-                Con.Close();
-                 populate();
+            if (string.IsNullOrWhiteSpace(PhoneTb.Text) || string.IsNullOrWhiteSpace(unameTb.Text) ||
+                string.IsNullOrWhiteSpace(fnameTb.Text) || string.IsNullOrWhiteSpace(PasswordTb.Text))
+            {
+                MessageBox.Show("Please fill all fields.");
+                return;
             }
-            catch
-            { 
+
+            string query = "UPDATE UserTbl SET Uname = @uname, Ufullname = @fname, Upassword = @pass WHERE Uphone = @phone";
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            cmd.Parameters.AddWithValue("@uname", unameTb.Text);
+            cmd.Parameters.AddWithValue("@fname", fnameTb.Text);
+            cmd.Parameters.AddWithValue("@pass", PasswordTb.Text);
+            cmd.Parameters.AddWithValue("@phone", PhoneTb.Text);
+
+            try
+            {
+                con.Open();
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("User successfully updated");
+                populate();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message);
+            }
+            finally
+            {
+                con.Close();
+            }
         }
     }
 }
