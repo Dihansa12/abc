@@ -119,7 +119,7 @@
             this.unameTb.Name = "unameTb";
             this.unameTb.Size = new System.Drawing.Size(248, 27);
             this.unameTb.TabIndex = 1;
-            this.unameTb.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            //this.unameTb.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // username
             // 

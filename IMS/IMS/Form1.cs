@@ -32,9 +32,9 @@ namespace IMS
         private void button1_Click(object sender, EventArgs e)
         {
             
-            string Username = "Admin";
-            string Password = "1234";
-            if (Username.Equals(Username)&& Password.Equals(Password)
+            string testUsername = "Admin";
+            string testPassword = "1234";
+            if (testUsername.Equals(Username.Text) && testPassword.Equals(Password.Text))
             {
                 MessageBox.Show("Login Successfully");
                 ManageUsers fff = new ManageUsers();
@@ -45,7 +45,12 @@ namespace IMS
             else
             {
                 MessageBox.Show("Invalid username or password");
+            }
         }
+
+        private void Password_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

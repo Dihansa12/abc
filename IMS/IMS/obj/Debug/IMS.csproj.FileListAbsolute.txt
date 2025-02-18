@@ -12,3 +12,18 @@ C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.Manage
 C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.ManageCustomers.resources
 C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.ProductManage.resources
 C:\Users\Ushi\documents\visual studio 2012\Projects\IMS\IMS\obj\Debug\IMS.ViewOrders.resources
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.csproj.AssemblyReference.cache
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.Form1.resources
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.ManageCategories.resources
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.ManageCustomers.resources
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.ManageUsers.resources
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.ProductManage.resources
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.Properties.Resources.resources
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.ViewOrders.resources
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.csproj.GenerateResource.cache
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.csproj.CoreCompileInputs.cache
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.exe
+D:\ushi\abc\IMS\IMS\obj\Debug\IMS.pdb
+D:\ushi\abc\IMS\IMS\bin\Debug\IMS.exe.config
+D:\ushi\abc\IMS\IMS\bin\Debug\IMS.exe
+D:\ushi\abc\IMS\IMS\bin\Debug\IMS.pdb
